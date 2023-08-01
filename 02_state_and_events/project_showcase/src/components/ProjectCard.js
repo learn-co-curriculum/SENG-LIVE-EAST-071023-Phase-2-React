@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ProjectCard({ project }) {
   const { image, name, about, link, phase } = project;
-  
+
+  const [clapCount, setClapCount] = useState(0)
+
+  const handleClap = () => {
+    setClapCount(clapCount => clapCount+1)
+  }
   return (
     <li className="card">
       <figure className="image">
         <img src={image} alt={name} />
-        <button className="claps">👏{0}</button>
+        <button className="claps" onClick={handleClap}>👏{clapCount}</button>
       </figure>
 
       <section className="details">
