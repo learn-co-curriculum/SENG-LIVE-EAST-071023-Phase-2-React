@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import ProjectCard from "./ProjectCard";
 
-function ProjectList() {
-  const [projects, setProjects] = useState([]);
+function ProjectList({projects, setProjects}) {
+  
+
   const [searchQuery, setSearchQuery] = useState("")
 
   const handleClick = () => {
