@@ -1,8 +1,7 @@
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 function ProjectCard({
   project,
-  onEditProject,
   onUpdateProject,
   onDeleteProject,
 }) {
@@ -21,10 +20,6 @@ function ProjectCard({
       .then(onUpdateProject);
   };
 
-  const handleEditClick = () => {
-    onEditProject(project);
-  };
-
   const handleDeleteClick = () => {
     if (window.confirm("Are you sure you want to delete this project?")) {
       onDeleteProject(id)
@@ -37,7 +32,9 @@ function ProjectCard({
   return (
     <li className="card">
       <figure className="image">
-        <img src={image} alt={name} />
+        <Link className="button" to={`/projects/${id}`}>
+          <img src={image} alt={name} />
+        </Link>
         <button onClick={handleClap} className="claps">
           👏{claps}
         </button>
@@ -56,15 +53,16 @@ function ProjectCard({
       <footer className="extra">
         <span className="badge blue">Phase {phase}</span>
         <div className="manage">
-          <button onClick={handleEditClick}>
+          <Link className="button" to={`/projects/${id}/edit`}>
             <FaPencilAlt />
-          </button>
+          </Link>
           <button onClick={handleDeleteClick}>
             <FaTrash />
           </button>
         </div>
       </footer>
     </li>
+    
   );
 };
 
